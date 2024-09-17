@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crow Drive</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Stile per il menu contestuale */
+        .context-menu {
+            display: none;
+            position: absolute;
+            z-index: 1000;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            width: 150px;
+        }
+        .context-menu-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .context-menu-item:hover {
+            background-color: #f4f4f4;
+        }
+        .container {
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #020e0a66;
+            border-radius: 4%;
+            box-shadow: 1px 13px 13px 0px #232;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <!-- Logo e titolo dell'applicazione -->
+            <a href="{{ url_for('index') }}" class="logo-link">
+                <img src="{{ url_for('static', filename='images/crow.png') }}" alt="Crow Drive Logo" class="logo-image">
+                <h1>Crow Drive</h1>
+            </a>
+        </header>
+
+        <!-- Form per il caricamento dei file -->
+        <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="current_path" value="{{ current_path }}">
+            <input type="file" name="file" multiple required>
+            <input type="submit" value="Upload">
+        </form>
+
+        <h2>Files</h2>
+
+        <div class="header-actions">
+            <!-- Pulsante per tornare alla directory precedente -->
+            {% if parent_path %}
+                {% if parent_path == '' %}
+                    <a href="{{ url_for('index') }}" class="back-button">
+                        <img src="{{ url_for('static', filename='images/backward.png') }}" alt="Indietro">
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('view_directory', subpath=parent_path) }}" class="back-button">
+                        <img src="{{ url_for('static', filename='images/backward.png') }}" alt="Indietro">
+                    </a>
+                {% endif %}
+            {% endif %}
+
+            <!-- Form per ordinare i file -->
+            <form action="{{ url_for('view_directory', subpath=current_path) }}" method="get" class="sort-form">
+                <label for="sort">Ordina per:</label>
+                <select id="sort" name="sort" onchange="this.form.submit()">
+                    <option value="name" {% if sort_by == 'name' %}selected{% endif %}>Nome</option>
+                    <option value="date" {% if sort_by == 'date' %}selected{% endif %}>Data</option>
+                </select>
+            </form>
+        </div>
+
+        <ul id="file-list">
+            <!-- Lista dei file e delle directory -->
+            {% for file in files %}
+                <li class="file-item" data-name="{{ file.name }}" data-type="{{ file.type }}">
+                    {% if file.type == 'directory' %}
+                        <a href="{{ url_for('view_directory', subpath=current_path + '/' + file.name) }}">{{ file.name }}/</a>
+                    {% else %}
+                        <a href="{{ url_for('download_file', filename=current_path + '/' + file.name) }}" target="_blank">{{ file.name }}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Menu contestuale per le azioni sui file -->
+        <div id="context-menu" class="context-menu">
+            <div id="delete-item" class="context-menu-item">Elimina</div>
+            <div id="share-item" class="context-menu-item">Condividi</div>
+        </div>
+    </div>
+
+    <script>
+        // Riferimento al menu contestuale
+        const contextMenu = document.getElementById('context-menu');
+        let selectedItem = null; // Elemento selezionato
+
+        // Mostra il menu contestuale
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+            if (event.target.closest('.file-item')) {
+                selectedItem = event.target.closest('.file-item');
+                contextMenu.style.display = 'block';
+                contextMenu.style.left = event.pageX + 'px';
+                contextMenu.style.top = event.pageY + 'px';
+            } else {
+                contextMenu.style.display = 'none';
+            }
+        });
+
+        // Nascondi il menu contestuale
+        document.addEventListener('click', function() {
+            contextMenu.style.display = 'none';
+        });
+
+        // Funzionalità di eliminazione
+        document.getElementById('delete-item').addEventListener('click', function() {
+            const itemName = selectedItem.dataset.name;
+            const itemType = selectedItem.dataset.type;
+            const confirmDelete = confirm('Sei sicuro di voler eliminare ' + itemName + '?');
+            if (confirmDelete) {
+                window.location.href = `/delete/${itemType}/${itemName}?current_path={{ current_path }}`;
+            }
+        });
+
+        // Funzionalità di condivisione
+        document.getElementById('share-item').addEventListener('click', function() {
+            const itemName = selectedItem.dataset.name;
+            window.location.href = `/share/${itemName}?current_path={{ current_path }}`;
+        });
+    </script>
+</body>
+</html>

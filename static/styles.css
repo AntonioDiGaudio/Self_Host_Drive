@@ -1,0 +1,187 @@
+/* Stile globale del corpo della pagina */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #257662e8;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Stili per i titoli */
+h1 {
+    color: #94a22e;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #94a22e9c;
+    display: ruby-text;
+    margin-bottom: 20px;
+}
+
+/* Stile per l'header e il logo */
+header {
+    display: ruby-text;
+    margin-bottom: 20px;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    width: 50px; /* Imposta la larghezza dell'immagine */
+    height: auto;
+    margin-right: 10px; /* Distanza tra l'immagine e il testo */
+}
+
+/* Stile per i form */
+form {
+    background-color: #34e0e085;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* max-width: 400px;
+    width: 100%; */
+    margin-bottom: 30px;
+}
+
+/* Stile per l'input file */
+input[type="file"] {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #f9d3007d;
+    width: -webkit-fill-available;
+    background-color: #f4efbe;
+}
+
+/* Stile per il pulsante di submit */
+input[type="submit"] {
+    background-color: #269c1c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Effetto hover per il pulsante di submit */
+input[type="submit"]:hover {
+    background-color: #94a22e;
+}
+
+/* Stile per l'elenco dei file */
+#file-list {
+    list-style-type: none;
+    padding: 0;
+    max-width: 400px;
+    width: 96%;
+}
+
+#file-list li {
+    background-color: #fff;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    display: contents;
+}
+
+/* Effetto hover per gli elementi della lista dei file */
+#file-list li:hover {
+    transform: scale(1.02);
+}
+
+#file-list li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    display: block;
+    background-color: green;
+    margin-bottom: inherit;
+}
+
+/* Effetto hover per i link nella lista dei file */
+#file-list li a:hover {
+    color: black;
+}
+
+/* Stile per tutti i link (bottoni) */
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    display: inline-block;
+    transition: transform 0.1s ease, background-color 0.1s ease;
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+/* Effetto hover per tutti i link (bottoni) */
+a:hover,
+input[type="submit"]:hover,
+#file-list li a:hover,
+.back-button img:hover {
+    transform: scale(1.05); /* Effetto di zoom in */
+    transition: transform 0.2s ease-in-out; /* Animazione più fluida */
+}
+
+/* Effetto clic per tutti i link (bottoni) */
+a:active,
+input[type="submit"]:active,
+#file-list li a:active,
+.back-button img:active {
+    transform: scale(0.95);  /* Effetto di rimpicciolimento */
+    background-color: #dcdcdc;
+}
+
+/* Stile per il pulsante "Indietro" */
+.back-button {
+    display: inline-block;
+    margin-bottom: 20px;  /* Spazio tra il pulsante e la lista */
+    text-decoration: none;
+}
+
+/* Stile per l'immagine del pulsante "Indietro" */
+.back-button img {
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+    border: none;
+    transition: transform 0.1s ease, background-color 0.1s ease;
+}
+
+/* Effetto clic per l'immagine del pulsante "Indietro" */
+.back-button:active img {
+    transform: scale(0.95);
+    background-color: #dcdcdc;  /* Puoi cambiare questo colore o rimuoverlo */
+}
+
+/* Stile per l'area delle azioni nell'intestazione */
+.header-actions {
+    display: ruby-text;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Stile per il form di ordinamento */
+.sort-form {
+    display: flex;
+    align-items: center;
+}
+
+.sort-form label {
+    margin-right: 10px;
+}

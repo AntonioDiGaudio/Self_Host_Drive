@@ -1,0 +1,58 @@
+Per accedere al tuo server Flask da internet, è necessario configurare il port forwarding sul tuo router e, se necessario, utilizzare un servizio di DNS dinamico. Ecco come procedere:
+
+1. Configurazione del Port Forwarding
+Port Forwarding consente al traffico che arriva su una determinata porta del tuo router di essere inoltrato a un computer specifico nella tua rete locale. Ecco i passaggi generali per configurare il port forwarding:
+
+Accedi al Pannello di Configurazione del Router:
+
+Apri un browser web e inserisci l’indirizzo IP del tuo router. Gli indirizzi IP comuni dei router sono 192.168.1.1, 192.168.0.1, o simili. Se non conosci l’indirizzo, puoi trovarlo nelle impostazioni di rete del tuo computer o nella documentazione del router.
+Inserisci il nome utente e la password per accedere al pannello di amministrazione del router. Questi dati di solito sono specificati nella documentazione del router o potrebbero essere le credenziali predefinite come admin/admin.
+Trova la Sezione di Port Forwarding:
+
+Cerca una sezione chiamata "Port Forwarding", "Virtual Server", "NAT", o simile. La posizione esatta varia a seconda del modello del router.
+Configura il Port Forwarding:
+
+Aggiungi una nuova regola di port forwarding.
+Nome: Inserisci un nome descrittivo, ad esempio "Flask Server".
+Porta Esterna: Inserisci 5000 (o un’altra porta se hai configurato Flask su una porta diversa).
+Porta Interna: Inserisci 5000 (la stessa porta del server Flask).
+Indirizzo IP Interno: Inserisci l'indirizzo IP locale del computer su cui è in esecuzione il server Flask, ad esempio 192.168.5.61.
+Protocollo: Seleziona TCP, UDP, o TCP/UDP (solitamente, TCP è sufficiente).
+Salva e Riavvia il Router:
+
+Salva le impostazioni e riavvia il router se necessario. Alcuni router potrebbero richiedere un riavvio per applicare le modifiche.
+2. Utilizzo di un Servizio di DNS Dinamico (opzionale)
+Se il tuo indirizzo IP pubblico cambia frequentemente, potresti utilizzare un servizio di DNS dinamico per ottenere un URL stabile.
+
+Scegli un Servizio di DNS Dinamico:
+
+Alcuni servizi popolari sono No-IP, DynDNS, e DuckDNS.
+Registrati e Configura:
+
+Crea un account con il servizio scelto e segui le istruzioni per configurare un hostname (ad esempio, miosito.no-ip.org).
+Installa il Client di Aggiornamento:
+
+Installa e configura il client di aggiornamento DNS dinamico sul tuo computer o router. Questo client aggiornerà automaticamente il servizio di DNS dinamico con il tuo attuale indirizzo IP pubblico.
+3. Verifica l’Accesso da Internet
+Trova il Tuo Indirizzo IP Pubblico:
+
+Puoi scoprire il tuo indirizzo IP pubblico visitando un sito come WhatIsMyIP.com.
+Testa l’Accesso:
+
+Dal browser di un dispositivo esterno alla tua rete (ad esempio, utilizzando la connessione dati di uno smartphone o un computer in un’altra rete), inserisci l’indirizzo IP pubblico seguito dalla porta, ad esempio http://[IP_Pubblico]:5000.
+Se stai usando un servizio di DNS dinamico, usa l’hostname configurato, come http://miosito.no-ip.org:5000.
+4. Risoluzione dei Problemi
+Se non riesci ad accedere al tuo server:
+
+Verifica che il server Flask sia in esecuzione e ascolti sulla porta configurata.
+Controlla le Impostazioni del Firewall: Assicurati che il firewall sul computer e sul router non blocchi la porta 5000.
+Controlla il Port Forwarding: Verifica che la regola di port forwarding sia configurata correttamente e che l’indirizzo IP interno sia corretto.
+Controlla l’IP Pubblico: Verifica che l’indirizzo IP pubblico sia quello che hai configurato e che non sia cambiato.
+Seguendo questi passaggi, dovresti essere in grado di configurare l'accesso remoto al tuo server Flask. Se hai ulteriori problemi o domande, fammi sapere!
+
+
+
+
+
+
+
