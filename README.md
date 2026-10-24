@@ -1,4 +1,9 @@
 # Personal Drive
+
+<p align="center">
+  <img src="docs/brag.gif" alt="Crow Drive: cartelle, caricamento di un file e link di condivisione" width="480">
+</p>
+
 ## _Use your personal self host drive_
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
